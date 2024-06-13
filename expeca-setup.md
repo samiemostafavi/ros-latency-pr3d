@@ -38,11 +38,16 @@ chi.container.wait_for_active(container_name)
 logger.success(f"created {container_name} container.")
 ```
 
-ssh the server node
+ssh the server node and clone this repo.
 ```
 ssh root@130.237.11.122
+git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
+source /root/catkin_ws/devel/setup.bash
+ros_master
+roscore &
+sleep 2
+rostopic echo /head_front_camera/depth/color/points > /dev/null 2>&1 &
 ```
-
 
 Run client node
 ```
@@ -71,9 +76,20 @@ chi.container.create_container(
 chi.container.wait_for_active(name)
 logger.success(f"created {name} container.")
 ```
-Add the default route via console `ip route add default via 130.237.11.97`.
+Add the default route via console: `ip route add default via 130.237.11.97`.
+Add nameserver via console: `echo nameserver 8.8.8.8 > /etc/resolv.conf`
 
-ssh the client node
+ssh the client node and clone this repo.
 ```
 ssh root@130.237.11.123
+source /root/catkin_ws/devel/setup.bash
+ros_slave 10.70.70.211
+git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
+cd ros-latency-pr3d/
+rosbag play -l ari_realsense_sample-2024-04-13-11-14-20.bag --topics /head_front_camera/depth/color/points
 ```
+
+
+
+
+
