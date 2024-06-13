@@ -80,11 +80,13 @@ logger.success(f"created {name} container.")
 Add the default route via console: `ip route add default via 130.237.11.97`.
 Add nameserver via console: `echo nameserver 8.8.8.8 > /etc/resolv.conf`
 
+NOTE: `ROS_IP` on the client side must be set to the 5G UE ip address
+
 ssh the client node and clone this repo.
 ```
 ssh root@130.237.11.123
 source /root/catkin_ws/devel/setup.bash
-export ROS_IP='10.42.3.2'
+export ROS_IP='172.16.0.104'
 ros_slave 10.70.70.211
 git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
 cd ros-latency-pr3d/
