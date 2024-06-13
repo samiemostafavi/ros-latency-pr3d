@@ -84,6 +84,7 @@ ssh the client node and clone this repo.
 ```
 ssh root@130.237.11.123
 source /root/catkin_ws/devel/setup.bash
+export ROS_IP='10.42.3.2'
 ros_slave 10.70.70.211
 git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
 cd ros-latency-pr3d/
