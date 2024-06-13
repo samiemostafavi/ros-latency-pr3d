@@ -80,7 +80,7 @@ logger.success(f"created {name} container.")
 Add the default route via console: `ip route add default via 130.237.11.97`.
 Add nameserver via console: `echo nameserver 8.8.8.8 > /etc/resolv.conf`
 
-NOTE: `ROS_IP` on the client side must be set to the 5G UE ip address
+NOTE: `ROS_IP` on the client side must be set to the 5G UE ip address which is `172.16.0.104` in the case of adv-router-07.
 
 ssh the client node and clone this repo.
 ```
