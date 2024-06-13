@@ -43,6 +43,7 @@ ssh the server node and clone this repo.
 ssh root@130.237.11.122
 git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
 source /root/catkin_ws/devel/setup.bash
+export ROS_IP='10.70.70.211'
 ros_master
 roscore &
 sleep 2
