@@ -88,17 +88,34 @@ export ROS_MASTER_URI='http://10.70.70.211:11311'
 ros_slave 10.70.70.211
 ```
 
-server
+
+## Server develop
+
+Develop
 ```
+git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
+```
+
+Run
+```
+cd bag-replay-receiver/
+source devel/setup.bash    
+vim src/bag-replay-receiver/src/bag-replay-receiver.py 
+catkin_make
 rosrun bag-replay-receiver bag-replay-receiver.py
 ```
 
-client
+## Client develop
+
+Develop
 ```
+git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
+```
+
+Run
+```
+cd replay-bag/
+source devel/setup.bash
 rosrun replay-bag replay.py
 ```
-
-
-
-
 
