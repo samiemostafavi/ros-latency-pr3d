@@ -41,13 +41,10 @@ logger.success(f"created {container_name} container.")
 ssh the server node and clone this repo.
 ```
 ssh root@130.237.11.122
-git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
 source /root/catkin_ws/devel/setup.bash
 export ROS_IP='10.70.70.211'
 ros_master
 roscore &
-sleep 2
-rostopic echo /head_front_camera/depth/color/points > /dev/null 2>&1 &
 ```
 
 Run client node
@@ -88,9 +85,16 @@ ssh root@130.237.11.123
 source /root/catkin_ws/devel/setup.bash
 export ROS_IP='172.16.0.104'
 ros_slave 10.70.70.211
-git clone https://github.com/samiemostafavi/ros-latency-pr3d.git
-cd ros-latency-pr3d/
-rosbag play -l ari_realsense_sample-2024-04-13-11-14-20.bag --topics /head_front_camera/depth/color/points
+```
+
+server
+```
+rosrun bag-replay-receiver bag-replay-receiver.py
+```
+
+client
+```
+rosrun replay-bag replay.py
 ```
 
 
