@@ -84,6 +84,7 @@ ssh the client node and clone this repo.
 ssh root@130.237.11.123
 source /root/catkin_ws/devel/setup.bash
 export ROS_IP='172.16.0.104'
+export ROS_MASTER_URI='http://10.70.70.211:11311'
 ros_slave 10.70.70.211
 ```
 
