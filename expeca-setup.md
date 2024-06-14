@@ -102,7 +102,7 @@ cd bag-replay-receiver/
 source devel/setup.bash    
 vim src/bag-replay-receiver/src/bag-replay-receiver.py 
 catkin_make
-rosrun bag-replay-receiver bag-replay-receiver.py
+rosrun bag-replay-receiver bag-replay-receiver.py > /root/logs.txt
 ```
 
 ## Client develop
@@ -116,6 +116,6 @@ Run
 ```
 cd replay-bag/
 source devel/setup.bash
-rosrun replay-bag replay.py
+rosrun replay-bag replay.py > /root/logs.txt
 ```
 
