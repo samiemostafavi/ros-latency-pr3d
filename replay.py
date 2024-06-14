@@ -7,6 +7,9 @@ import time
 import signal
 import sys
 
+MAX_MSG = 120
+RATE = 1
+
 # Flag to indicate when to stop the replay
 stop_replay = False
 
@@ -23,15 +26,18 @@ def message_callback(msg):
 def replay_bag(bag_file, topic):
     rospy.init_node('bag_replayer', anonymous=True)
     pub = rospy.Publisher(topic, PointCloud2, queue_size=10)  # Change String to the appropriate message type
-    rate = rospy.Rate(1)  # Adjust the rate as needed
-
-    with rosbag.Bag(bag_file, 'r') as bag:
-        for topic, msg, t in bag.read_messages(topics=[topic]):
-            if rospy.is_shutdown() or stop_replay:
-                break
-            pub.publish(msg)
-            message_callback(msg)
-            rate.sleep()
+    rate = rospy.Rate(RATE)  # Adjust the rate as needed
+    
+    counter = 0
+    while not rospy.is_shutdown() and not stop_replay and counter <= MAX_MSG:
+        with rosbag.Bag(bag_file, 'r') as bag:
+            for topic, msg, t in bag.read_messages(topics=[topic]):
+                if rospy.is_shutdown() or stop_replay or counter > MAX_MSG:
+                    break
+                pub.publish(msg)
+                counter = counter + 1
+                message_callback(msg)
+                rate.sleep()
 
 if __name__ == '__main__':
     # Setup signal handler for graceful shutdown
