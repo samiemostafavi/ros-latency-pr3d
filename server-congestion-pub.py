@@ -21,10 +21,16 @@ class MyHttpRequestHandler(BaseHTTPRequestHandler):
         self._set_headers()
 	    # get resuls
         command = "ifstat -i net1 1 1 | awk 'NR==3 {print $1, $2}'"
-        res = subprocess.check_output(command, shell=True, text=True)
-        res = res.decode('utf-8').strip()                                
-        # return
-        self.wfile.write(res)
+        try:
+            res = subprocess.check_output(command, shell=True, text=True).strip()
+        except subprocess.CalledProcessError as e:
+            res = f"ERROR_{e}"
+        
+        # Create a JSON response
+        response = json.dumps({"result": res})
+        
+        # Write the response
+        self.wfile.write(response.encode('utf-8'))
 
 if __name__ == "__main__":
     from sys import argv
