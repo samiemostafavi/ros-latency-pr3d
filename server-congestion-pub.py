@@ -20,7 +20,7 @@ class MyHttpRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self._set_headers()
 	    # get resuls
-        command = "ifstat -i net1 1 1 | awk 'NR==3 {print $1, $2}'"
+        command = "ifstat -i net1 1 1"
         try:
             res = subprocess.check_output(command, shell=True, text=True).strip()
         except subprocess.CalledProcessError as e:
