@@ -1,3 +1,6 @@
+# pip3 install HTTPServer
+# pip3 install python-daemon
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import socketserver
 import subprocess
